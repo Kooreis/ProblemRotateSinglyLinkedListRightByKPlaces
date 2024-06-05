@@ -1,11 +1,29 @@
-import java.util.Scanner;
+class LinkedList {
+    Node head;
 
-class Node {
-    int data;
-    Node next;
+    void rotate(int k) {
+        if (k == 0) return;
 
-    Node(int data) {
-        this.data = data;
-        this.next = null;
+        Node current = head;
+
+        int count = 1;
+        while (count < k && current != null) {
+            current = current.next;
+            count++;
+        }
+
+        if (current == null) return;
+
+        Node kthNode = current;
+
+        while (current.next != null) {
+            current = current.next;
+        }
+
+        current.next = head;
+
+        head = kthNode.next;
+
+        kthNode.next = null;
     }
 }
